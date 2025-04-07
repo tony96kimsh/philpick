@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>@@TEMP@@  PhilosoPick</title>
+<link rel="icon" href="img/favicon.png" type="image/png" />
+
+<!-- Pretendard Font -->
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
+
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+
+<!-- Tailwind Custom Config -->
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: {
+          sans: ['Pretendard', 'sans-serif'],
+        },
+        colors: {
+          primary: '#2b3a55',
+          subtle: '#f9f9f9',
+        }
+      },
+    },
+  };
+</script>
+</head>
+
+<body class="font-sans text-base bg-subtle text-gray-800">
+
+<!-- Header -->
+<header class="bg-white shadow-sm w-full">
+  <div class="max-w-5xl mx-auto flex items-center justify-between px-6 py-6">
+    <h1 class="text-3xl font-bold text-primary tracking-tight">PhilosoPick</h1>
+    <nav class="space-x-6 text-sm text-gray-500">
+      <a href="#" class="hover:text-primary">Library</a>
+      <a href="#" class="hover:text-primary">My Books</a>
+      <a href="#" class="hover:text-primary">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- Main Section -->
+<main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
+
+<!-- 검색 + 추천 도서 포함 영역 -->
+<section id="search" class="space-y-8">
+  <!-- 검색창 -->
+  <div class="relative">
+    <input 
+      type="text" 
+      placeholder="책 제목 또는 저자를 입력하세요" 
+      class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-800"
+    />
+    <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+      <!-- 돋보기 아이콘 -->
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+          d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.15 13.15z" />
+      </svg>
+    </div>
+  </div>
+
+  <!-- 추천 도서 리스트 -->
+  <div>
+    <h2 class="text-xl font-semibold mb-4 text-primary">추천 도서</h2>
+    <div class="flex flex-wrap gap-3">
+      <span class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 cursor-pointer">
+        존재와 시간
+      </span>
+      <span class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 cursor-pointer">
+        철학의 위안
+      </span>
+      <span class="border border-gray-300 rounded-full px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 cursor-pointer">
+        사랑의 기술
+      </span>
+    </div>
+  </div>
+</section>
+
+
+  <!-- 검색 결과가 출력될 영역 -->
+  <section id="book-list" class="mt-12">
+    <!-- fetch 결과를 여기에 동적으로 표시 -->
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-white text-center text-gray-500 py-6 border-t mt-12">
