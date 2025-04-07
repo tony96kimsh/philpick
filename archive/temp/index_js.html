@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="textbox" id="searchInput">
+    <button id="searchBtn">search</button>
+    
+    <script>
+        const myKey = "ttbkt61200935003";
+        
+        const searchBtn = document.getElementById("searchBtn");
+        const searchInput = document.getElementById("searchInput");
+
+        searchBtn.addEventListener("click", () => {
+            const srcVal = searchInput.value;
+            console.log("검색어", srcVal);
+        })
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Custom Utility Classes ===== */
+
+.blind {
+  display: none ;
+}
+
+.body-base {
+  @apply font-sans text-base m-0 p-0 text-gray-700 bg-gray-50 dark:bg-gray-900 dark:text-gray-100;
+}
+
+.main-base {
+  @apply max-w-screen-md mx-auto px-6 py-12;
+}
+
+.footer-base {
+  @apply bg-white text-center text-gray-500 py-6 border-t border-gray-200 mt-12;
+  @apply dark:bg-gray-800 dark:text-gray-400 dark:border-gray-700;
+}
+
+.btn {
+  @apply bg-primary hover:bg-hoverPrimary text-white px-5 h-12 rounded-lg text-base flex items-center justify-center whitespace-nowrap;
+  @apply dark:bg-blue-600 dark:hover:bg-blue-700;
+}
+
+.input-search {
+  @apply w-full px-12 py-3 border border-gray-300 rounded-lg bg-white text-gray-800 text-base outline-none focus:border-primary focus:ring-2 focus:ring-primary;
+  @apply dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 dark:placeholder-gray-400;
+}
+
+.icon-search {
+  @apply absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5;
+  @apply dark:text-gray-300;
+}
+
+.form-search {
+  @apply flex gap-3 items-center mt-6;
+}
+
+.header-title {
+  @apply text-[28px] font-bold text-primary tracking-tight font-serif;
+  @apply dark:text-white;
+}
+
+.nav-link {
+  @apply text-sm text-gray-500 hover:text-primary;
+  @apply dark:text-gray-300 dark:hover:text-white;
+}
+
+.text-hint {
+  @apply text-center text-gray-500;
+  @apply dark:text-gray-400;
+}
+
+/* 검색 결과 리스트 */
+.book-item {
+  @apply flex gap-4 pb-4 mb-4 border-b border-gray-200;
+  @apply bg-white text-gray-800;
+  @apply dark:bg-gray-800 dark:text-gray-100 dark:border-gray-700;
+}
+
+.book-info {
+  @apply text-sm text-gray-700;
+  @apply dark:text-gray-200;
+}
+
+.book-title {
+  @apply block text-lg font-bold text-primary;
+  @apply dark:text-blue-300;
+}
+
+.book-desc {
+  @apply mt-2 text-gray-600 text-sm;
+  @apply dark:text-gray-400;
+}
+
+.book-price {
+  @apply block mt-2 font-semibold text-blue-600;
+  @apply dark:text-blue-400;
+}
+
+mark {
+  @apply bg-blue-100 text-blue-800 px-1 py-0.5 rounded-md;
+  @apply dark:bg-blue-900 dark:text-blue-200;
+}
+
+.loading {
+  @apply text-sm text-blue-500;
+  @apply dark:text-blue-300;
+}
+
+.pageButton {
+  @apply px-4 py-1 rounded bg-white text-gray-800 border border-gray-300 shadow-sm;
+  @apply enabled:hover:bg-blue-100 enabled:hover:border-blue-400;
+  @apply disabled:opacity-40 disabled:cursor-not-allowed;
+  @apply transition-all;
+}
