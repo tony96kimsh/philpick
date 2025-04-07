@@ -1,4 +1,8 @@
 # 📚 책과 글자를 사랑하는 사람들을 위한 필픽(PhilPick)
+![](./img/md/1.jpg) | ![](./img/md/1.jpg)
+--|--|
+
+
 
 - [📘 제작 과정 Notion](https://stump-smartphone-024.notion.site/OPEN-API-project-1bdf398452c3800a8164dc2b2c5aef6e?pvs=4)
 - [🌐 사이트 바로가기 (Vercel)](https://philpick.vercel.app/)
