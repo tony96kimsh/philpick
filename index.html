@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhilosoPick</title>
   <link rel="icon" href="img/favicon.png" type="image/png" />
-  
+  <link rel="stylesheet" href="style.css" />
+
   <!-- Pretendard Font -->
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
 
@@ -51,6 +52,7 @@
     <section id="search">
       <div class="relative">
         <input 
+          id="searchInput"
           type="text" 
           placeholder="책 제목 또는 저자를 입력하세요" 
           class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-800"
@@ -63,8 +65,67 @@
           </svg>
         </div>
       </div>
+
+      <!-- 검색 버튼 -->
+      <div class="text-right mt-4">
+        <button onclick="searchBooks()" class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
+          검색
+        </button>
+      </div>
+    </section>
+
+    <!-- 검색 결과 리스트 -->
+    <section id="list" class="space-y-6 mt-10">
+      <!-- 결과가 여기에 들어감 -->
     </section>
   </main>
 
   <!-- Footer -->
   <footer class="bg-white text-center text-gray-500 py-6 border-t mt-12">
+    copyright © 2025 KIM SUNG HOON — PhilosoPick
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    async function searchBooks() {
+      const query = document.getElementById('searchInput').value.trim();
+      const resultContainer = document.getElementById('list');
+
+      if (!query) {
+        alert('검색어를 입력해주세요!');
+        return;
+      }
+
+      const url = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935002&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101`;
+
+      try {
+        const res = await fetch(url);
+        const data = await res.json();
+
+        if (!data.item || data.item.length === 0) {
+          resultContainer.innerHTML = "<p class='text-gray-500'>검색 결과가 없습니다.</p>";
+          return;
+        }
+
+        resultContainer.innerHTML = data.item.map(book => `
+          <div class="border-b pb-4 mb-4 flex gap-4 items-start">
+            <img src="${book.cover}" alt="${book.title}" class="w-24 h-auto rounded shadow" />
+            <div class="text-sm text-gray-700">
+              <span class="block font-bold text-lg text-primary">${book.title}</span>
+              <span class="block mt-1">ㄴ저자: ${book.author}</span>
+              <span class="block">출판사: ${book.publisher}</span>
+              <p class="mt-2 text-gray-600 text-sm">${book.description?.substring(0, 100)}...</p>
+              <span class="block font-semibold mt-2 text-blue-600">${book.priceStandard.toLocaleString()}원</span>
+            </div>
+          </div>
+        `).join('');
+      } catch (error) {
+        console.error("에러 발생:", error);
+        resultContainer.innerHTML = "<p class='text-red-500'>검색 중 오류가 발생했습니다.</p>";
+      }
+    }
+
+  </script>
+
+</body>
+</html>
