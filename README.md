@@ -2,3 +2,4 @@
 
 [제작 과정 노션](https://stump-smartphone-024.notion.site/OPEN-API-project-1bdf398452c3800a8164dc2b2c5aef6e?pvs=4)
 
+# philpick
