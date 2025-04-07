@@ -50,8 +50,11 @@ async function searchBooks(page = 1) {
 
   if (loading) loading.classList.remove("hidden");
 
-  const realApi = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935004&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=${resultsPerPage}&Start=${startIndex}&SearchTarget=Book&output=js&Version=20131101`;
-  const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(realApi)}`;
+  // const realApi = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935004&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=${resultsPerPage}&Start=${startIndex}&SearchTarget=Book&output=js&Version=20131101`;
+  // const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(realApi)}`;
+
+  // 수정 (Vercel 서버 함수 호출)
+  const proxyUrl = `/api/search?query=${encodeURIComponent(query)}&page=${page}`;
 
   try {
     const res = await fetch(proxyUrl);
