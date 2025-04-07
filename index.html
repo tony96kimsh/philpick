@@ -5,15 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhilosoPick</title>
   <link rel="icon" href="img/favicon.png" type="image/png" />
-  <link rel="stylesheet" href="style.css" />
 
   <!-- Pretendard Font -->
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Tailwind Custom Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -54,10 +51,9 @@
         <input 
           id="searchInput"
           type="text" 
-          placeholder="책 제목 또는 저자를 입력하세요" 
+          placeholder="책 제목을 입력하세요" 
           class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-800"
         />
-        <!-- Search icon -->
         <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
           <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -85,7 +81,7 @@
     copyright © 2025 KIM SUNG HOON — PhilosoPick
   </footer>
 
-  <!-- JavaScript -->
+  <!-- API 연동 스크립트 -->
   <script>
     async function searchBooks() {
       const query = document.getElementById('searchInput').value.trim();
@@ -96,23 +92,25 @@
         return;
       }
 
-      const url = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935003&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=10&start=1&SearchTarget=Book&output=js&Version=20131101`;
+      const realApi = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935003&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=10&SearchTarget=Book&output=js&Version=20131101`;
+      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(realApi)}`;
 
       try {
-        const res = await fetch(url);
+        const res = await fetch(proxyUrl);
         const data = await res.json();
+        const parsed = JSON.parse(data.contents);
 
-        if (!data.item || data.item.length === 0) {
+        if (!parsed.item || parsed.item.length === 0) {
           resultContainer.innerHTML = "<p class='text-gray-500'>검색 결과가 없습니다.</p>";
           return;
         }
 
-        resultContainer.innerHTML = data.item.map(book => `
+        resultContainer.innerHTML = parsed.item.map(book => `
           <div class="border-b pb-4 mb-4 flex gap-4 items-start">
             <img src="${book.cover}" alt="${book.title}" class="w-24 h-auto rounded shadow" />
             <div class="text-sm text-gray-700">
               <span class="block font-bold text-lg text-primary">${book.title}</span>
-              <span class="block mt-1">ㄴ저자: ${book.author}</span>
+              <span class="block mt-1">저자: ${book.author}</span>
               <span class="block">출판사: ${book.publisher}</span>
               <p class="mt-2 text-gray-600 text-sm">${book.description?.substring(0, 100)}...</p>
               <span class="block font-semibold mt-2 text-blue-600">${book.priceStandard.toLocaleString()}원</span>
@@ -124,7 +122,6 @@
         resultContainer.innerHTML = "<p class='text-red-500'>검색 중 오류가 발생했습니다.</p>";
       }
     }
-
   </script>
 
 </body>
