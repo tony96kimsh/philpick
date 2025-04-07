@@ -8,14 +8,23 @@ export default async function handler(req, res) {
     }
   
     const apiUrl = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935004&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=10&Start=${start}&SearchTarget=Book&output=js&Version=20131101`;
-  
+
     try {
-      const response = await fetch(apiUrl);
-      const text = await response.text();
-      res.setHeader("Content-Type", "application/json; charset=utf-8");
-      res.status(200).send(text);
+        const response = await fetch(apiUrl);
+        const text = await response.text(); // JSON 아님
+        const data = JSON.parse(text);      // 문자열을 JSON으로 파싱
+
+        res.status(200).json({ contents: JSON.stringify(data) }); // stringified JSON을 리턴
     } catch (error) {
-      res.status(500).json({ error: "서버 오류" });
+        res.status(500).json({ error: "서버 오류", details: error.message });
     }
+    // try {
+    //   const response = await fetch(apiUrl);
+    //   const text = await response.text();
+    //   res.setHeader("Content-Type", "application/json; charset=utf-8");
+    //   res.status(200).send(text);
+    // } catch (error) {
+    //   res.status(500).json({ error: "서버 오류" });
+    // }
   }
   
