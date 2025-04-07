@@ -3,126 +3,64 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PhilosoPick</title>
+  <title>PhilPick</title>
   <link rel="icon" href="img/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="style.css" />
 
   <!-- Pretendard Font -->
   <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet" />
-
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['Pretendard', 'sans-serif'],
-          },
-          colors: {
-            primary: '#2b3a55',
-            subtle: '#f9f9f9',
-          }
-        },
-      },
-    };
-  </script>
+  <!-- Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
-<body class="font-sans text-base bg-subtle text-gray-800">
-
+<body>
   <!-- Header -->
-  <header class="bg-white shadow-sm w-full">
-    <div class="max-w-5xl mx-auto flex items-center justify-between px-6 py-6">
-      <h1 class="text-3xl font-bold text-primary tracking-tight">PhilosoPick</h1>
-      <nav class="space-x-6 text-sm text-gray-500">
-        <a href="#" class="hover:text-primary">Library</a>
-        <a href="#" class="hover:text-primary">My Books</a>
-        <a href="#" class="hover:text-primary">About</a>
+  <header>
+    <div class="header-container">
+      <h1 class="header-title"><a href="index.html">PhilPick</a></h1>
+      
+      <nav>
+        <a href="#">Library</a>
+        <a href="#">My Books</a>
+        <a href="#">About</a>
       </nav>
     </div>
   </header>
 
   <!-- Main Section -->
-  <main class="max-w-5xl mx-auto px-6 py-12 space-y-12">
-
+  <main>
     <!-- 검색 영역 -->
     <section id="search">
-      <div class="relative">
-        <input 
-          id="searchInput"
-          type="text" 
-          placeholder="책 제목을 입력하세요" 
-          class="w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary bg-white text-gray-800"
-        />
-        <div class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
-          <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-              d="M21 21l-4.35-4.35m0 0A7.5 7.5 0 103.5 3.5a7.5 7.5 0 0013.15 13.15z" />
-          </svg>
+      <form id="searchForm" class="search-form">
+        <div class="search-box">
+          <input 
+            id="searchInput"
+            type="text" 
+            placeholder="책 제목을 입력하세요" 
+            class="search-input"
+          />
+          <div class="search-icon">
+            <i class="fas fa-search"></i>
+          </div>      
         </div>
-      </div>
 
-      <!-- 검색 버튼 -->
-      <div class="text-right mt-4">
-        <button onclick="searchBooks()" class="bg-primary text-white px-4 py-2 rounded hover:bg-opacity-90">
-          검색
-        </button>
-      </div>
+        <!-- 검색 버튼 -->
+        <button type="submit" class="search-button">검색</button>
+      </form>
     </section>
 
     <!-- 검색 결과 리스트 -->
-    <section id="list" class="space-y-6 mt-10">
-      <!-- 결과가 여기에 들어감 -->
+    <section id="list">
+      <p id="hintText" class="hint-text">일치하는 검색 목록이 없습니다.</p>
     </section>
   </main>
 
   <!-- Footer -->
-  <footer class="bg-white text-center text-gray-500 py-6 border-t mt-12">
-    copyright © 2025 KIM SUNG HOON — PhilosoPick
+  <footer>
+    copyright © 2025 KIM SUNG HOON — PhilPick
   </footer>
 
-  <!-- API 연동 스크립트 -->
-  <script>
-    async function searchBooks() {
-      const query = document.getElementById('searchInput').value.trim();
-      const resultContainer = document.getElementById('list');
-
-      if (!query) {
-        alert('검색어를 입력해주세요!');
-        return;
-      }
-
-      const realApi = `https://www.aladin.co.kr/ttb/api/ItemSearch.aspx?ttbkey=ttbkt61200935004&Query=${encodeURIComponent(query)}&QueryType=Title&MaxResults=10&SearchTarget=Book&output=js&Version=20131101`;
-      const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(realApi)}`;
-
-      try {
-        const res = await fetch(proxyUrl);
-        const data = await res.json();
-        const parsed = JSON.parse(data.contents);
-
-        if (!parsed.item || parsed.item.length === 0) {
-          resultContainer.innerHTML = "<p class='text-gray-500'>검색 결과가 없습니다.</p>";
-          return;
-        }
-
-        resultContainer.innerHTML = parsed.item.map(book => `
-          <div class="border-b pb-4 mb-4 flex gap-4 items-start">
-            <img src="${book.cover}" alt="${book.title}" class="w-24 h-auto rounded shadow" />
-            <div class="text-sm text-gray-700">
-              <span class="block font-bold text-lg text-primary">${book.title}</span>
-              <span class="block mt-1">저자: ${book.author}</span>
-              <span class="block">출판사: ${book.publisher}</span>
-              <p class="mt-2 text-gray-600 text-sm">${book.description?.substring(0, 100)}...</p>
-              <span class="block font-semibold mt-2 text-blue-600">${book.priceStandard.toLocaleString()}원</span>
-            </div>
-          </div>
-        `).join('');
-      } catch (error) {
-        console.error("에러 발생:", error);
-        resultContainer.innerHTML = "<p class='text-red-500'>검색 중 오류가 발생했습니다.</p>";
-      }
-    }
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

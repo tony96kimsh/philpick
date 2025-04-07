@@ -1,17 +1,171 @@
-  .input-search {
-    @apply w-full px-4 py-3 pl-12 border border-gray-300 rounded-lg 
-      focus:outline-none focus:ring-2 focus:ring-primary 
-      bg-white text-gray-800;
-  }
+/* style.css */
+body {
+  font-family: 'Pretendard', sans-serif;
+  font-size: 16px;
+  background-color: #f9f9f9;
+  color: #374151;
+  margin: 0;
+  padding: 0;
+}
 
-  .layout-container {
-    @apply max-w-5xl mx-auto px-6;
-  }
+header {
+  background-color: white;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  width: 100%;
+}
 
-  .book-info span {
-    @apply block text-sm text-gray-600;
-  }
+h1 a {
+  text-decoration: none;
+  color: inherit;
+}
 
-  .book-info p {
-    @apply mt-2 text-gray-700 text-sm leading-snug;
-  }
+.header-container {
+  max-width: 1024px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px;
+}
+
+.header-title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #2b3a55;
+  letter-spacing: -0.02em;
+}
+
+nav a {
+  font-size: 14px;
+  color: #6b7280;
+  margin-left: 24px;
+  text-decoration: none;
+}
+
+nav a:hover {
+  color: #2b3a55;
+}
+
+main {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 48px 24px;
+}
+
+/* 📌 검색 영역 정리 */
+.search-form {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 24px;
+}
+
+.search-box {
+  position: relative;
+  flex-grow: 1;
+  width: 100%;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 16px 12px 48px;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  background-color: white;
+  color: #1f2937;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.search-input:focus {
+  border-color: #2b3a55;
+  box-shadow: 0 0 0 2px #2b3a55;
+}
+
+.search-icon {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #9ca3af;
+  width: 20px;
+  height: 20px;
+}
+
+.search-button {
+  background-color: #2b3a55;
+  color: white;
+  padding: 0 20px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  height: 48px;
+  white-space: nowrap;
+  font-size: 16px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-button:hover {
+  background-color: #1d293e;
+}
+
+#list {
+  margin-top: 40px;
+}
+
+.hint-text {
+  text-align: center;
+  color: #6b7280;
+}
+
+.book-item {
+  display: flex;
+  gap: 16px;
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.book-item img {
+  width: 96px;
+  height: auto;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.book-info {
+  font-size: 14px;
+  color: #374151;
+}
+
+.book-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: #2b3a55;
+}
+
+.book-desc {
+  margin-top: 8px;
+  color: #4b5563;
+  font-size: 14px;
+}
+
+.book-price {
+  font-weight: 600;
+  color: #2563eb;
+  margin-top: 8px;
+  display: block;
+}
+
+footer {
+  background-color: white;
+  text-align: center;
+  color: #6b7280;
+  padding: 24px;
+  border-top: 1px solid #e5e7eb;
+  margin-top: 48px;
+}
