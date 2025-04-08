@@ -4,10 +4,10 @@
 
 
 
-- [📘 제작 과정 Notion](https://stump-smartphone-024.notion.site/OPEN-API-project-1bdf398452c3800a8164dc2b2c5aef6e?pvs=4)
 - [🌐 사이트 바로가기 (Vercel)](https://philpick.vercel.app/)
 - [⚙️ Vercel Dashboard](https://vercel.com/kimsunghoons-projects/philpick)
-
+- [📘 제작 과정 Notion](https://stump-smartphone-024.notion.site/OPEN-API-project-1bdf398452c3800a8164dc2b2c5aef6e?pvs=4)
+- [🙋‍♂️ 발표 google slide](https://docs.google.com/presentation/d/1c7wPQL5Wge0kcsBs768rRh8-R0wuK5X76Vcwa-u0-7U/edit?usp=sharing)
 ---
 
 ## 🟩 주제 선정
