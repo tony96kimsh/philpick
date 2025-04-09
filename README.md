@@ -51,7 +51,7 @@
 ├── api
 │   └── search.js
 ├── archive
-│   ├── \010proxy-test.html
+│   ├── proxy-test.html
 │   ├── index_temp.html
 │   ├── style.css
 │   ├── temp
